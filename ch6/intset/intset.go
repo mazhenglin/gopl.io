@@ -49,7 +49,7 @@ func (s *IntSet) String() string {
 		for j := 0; j < 64; j++ {
 			if word&(1<<uint(j)) != 0 {
 				if buf.Len() > len("{") {
-					buf.Write(' ')
+					buf.WriteByte(' ')
 				}
 				fmt.Fprintf(&buf, "%d", 64*i+j)
 			}
