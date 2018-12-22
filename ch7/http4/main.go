@@ -17,7 +17,7 @@ func main() {
 
 type dollars float32
 
-func (d dollars) String() string { return fmt.SPrintf("$%.2f", d) }
+func (d dollars) String() string { return fmt.Sprintf("$%.2f", d) }
 
 type database map[string]dollars
 
@@ -30,7 +30,7 @@ func (db database) list(w http.ResponseWriter, req *http.Request) {
 func (db database) price(w http.ResponseWriter, req *http.Request) {
 	item := req.URL.Query().Get("item")
 	if price, ok := db[item]; ok {
-		fmt.Fpritnf(w, "%s\n", price)
+		fmt.Fprintf(w, "%s\n", price)
 	} else {
 		w.WriteHeader(http.StatusNotFound) // 404
 		fmt.Fprintf(w, "no such item: %q\n", item)
